@@ -13,28 +13,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.imobiliaria.model.Loteadora;
-import com.example.imobiliaria.service.LoteadoraService;
+import com.example.imobiliaria.model.Terreno;
+import com.example.imobiliaria.service.TerrenoService;
 
 @RestController
-@RequestMapping("/api/loteadora")
-public class LoteadoraController {
-    
+@RequestMapping("/api/terreno")
+public class TerrenoController {
+
     @Autowired
-    private LoteadoraService service;
+    private TerrenoService service;
 
     @GetMapping("/")
-    public List<Loteadora> buscarTodos(){
+    public List<Terreno> buscarTodos(){
        return service.buscarTodos();
     }
 
     @PostMapping("/")
-    public Loteadora inserir(@RequestBody Loteadora obj){
+    public Terreno inserir(@RequestBody Terreno obj){
         return service.inserir(obj);
     }
 
     @PutMapping("/")
-    public Loteadora alterar(@RequestBody Loteadora obj){
+    public Terreno alterar(@RequestBody Terreno obj){
         return service.alterar(obj);
     }
 

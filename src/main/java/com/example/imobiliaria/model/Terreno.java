@@ -17,8 +17,7 @@ public class Terreno {
     private Long id;
 
     private String nome;
-    private String razao_social;
-    private String endereco;
-    private String telefone;
-    private Double comissao;
+    private String medidas;
+    private Double valor_da_pedida;
+    private Double valor_da_venda;
 }

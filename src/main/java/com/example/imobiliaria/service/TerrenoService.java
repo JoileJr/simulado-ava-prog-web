@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.imobiliaria.enums.Situacao;
+import com.example.imobiliaria.exceptions.TerrenoNotFoundException;
+import com.example.imobiliaria.model.Loteadora;
 import com.example.imobiliaria.model.Terreno;
 import com.example.imobiliaria.repository.TerrenoRepository;
 
@@ -12,22 +15,21 @@ import com.example.imobiliaria.repository.TerrenoRepository;
 public class TerrenoService {
     @Autowired
     private TerrenoRepository repository;
-
-    public List<Terreno> buscarTodos() {
-        return repository.findAll();
+    
+    public Terreno cadastrarTerreno(Terreno terreno) {
+        return repository.save(terreno);
     }
-
-    public Terreno inserir(Terreno obj) {
-        Terreno objNovo = repository.saveAndFlush(obj);
-        return objNovo;
+    
+    public Terreno buscarTerrenoPorId(Long id) {
+        return repository.findById(id)
+            .orElseThrow(() -> new TerrenoNotFoundException(id));
     }
-
-    public Terreno alterar(Terreno obj) {
-        return repository.saveAndFlush(obj);
+    
+    public List<Terreno> buscarTerrenosPorLoteadora(Loteadora loteadora) {
+        return repository.findByLoteadora(loteadora);
     }
-
-    public void excluir(Long id) {
-        Terreno obj = repository.findById(id).get();
-        repository.delete(obj);
+    
+    public List<Terreno> buscarTerrenosPorLoteadoraESituacao(Loteadora loteadora, Situacao situacao) {
+        return repository.findByLoteadoraAndSituacao(loteadora, situacao);
     }
 }
